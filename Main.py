@@ -3,6 +3,7 @@
 import sys
 from sympy import diff, sympify, symbols
 
+# Input dari pengguna
 fungsi_input = str(input("Masukkan fungsi f(x): "))
 x = int(input("Masukkan nilai x: "))
 toleransi_error = float(input("Masukkan toleransi: "))
