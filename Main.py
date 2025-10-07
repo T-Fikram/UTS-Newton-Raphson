@@ -9,6 +9,7 @@ x = int(input("Masukkan nilai x: "))
 toleransi_error = float(input("Masukkan toleransi: "))
 n = int(input("Masukkan iterasi maksimum: "))
 
+# Mendefinisikan simbol x untuk digunakan di Sympy
 x_simbol = symbols('x')
 
 
