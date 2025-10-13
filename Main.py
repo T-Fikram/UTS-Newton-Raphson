@@ -17,10 +17,8 @@ while True:
     pilihan = input("Pilih menu (1/2): ")
 
     if pilihan == "2":
-        print("\nTerima kasih telah menggunakan Harrit Solver. 👋")
+        print("\nTerima kasih, sampai berjumpa kembali👋")
         sys.exit(0)
-
-    
 
     elif pilihan == "1":
         # Input dari pengguna
@@ -95,7 +93,7 @@ while True:
         # Tanya apakah ingin mengulang
         ulang = input("\nApakah ingin menjalankan lagi? (y/n): ").lower()
         if ulang != "y":
-            print("\nTerima kasih telah menggunakan Harrit Solver. 👋")
+            print("\nTerima kasih telah menggunakan program ini👋")
             sys.exit(0)
         else:
             print("\nMengulang program...\n")
