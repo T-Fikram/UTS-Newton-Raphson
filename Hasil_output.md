@@ -64,4 +64,37 @@ Apakah ingin mencoba lagi dengan fungsi lain? (y/n): n
 Terima kasih telah menggunakan program ini👋
 An exception has occurred, use %tb to see the full traceback.
 
+INPUT YANG DIPERLUKAN : 
+============================================================
+          PROGRAM METODE NEWTON-RAPHSON
+============================================================
+
+[1] Masuk ke program
+[2] Keluar
+Pilih menu (1/2): 1
+
+Jika operasi adalah sebuah perkalian gunakan tanda *
+Contoh: x^2 - 4*x + 4
+
+Masukkan fungsi f(x): x^2-2
+Masukkan nilai x (tebakan awal): 2
+Masukkan toleransi: 0.0001
+Masukkan iterasi maksimum: 10
+
+Memproses...
+
+==========================================================================================
+| Iterasi  | x            | f(x)            | f'(x)           | Δx              |
+==========================================================================================
+| 1        | 1.500000     | 0.250000        | 3.000000        | 0.500000        |
+| 2        | 1.416667     | 0.006944        | 2.833333        | 0.083333        |
+| 3        | 1.414216     | 0.000006        | 2.828431        | 0.002451        |
+==========================================================================================
+
+✅ Konvergen pada iterasi ke-3
+Akar terletak di x = 1.414216 dengan f(x) = 0.000006
+============================================================
+Program selesai dijalankan.
+============================================================
+
 
