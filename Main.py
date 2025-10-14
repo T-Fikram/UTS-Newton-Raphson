@@ -16,11 +16,11 @@ while True:
     pilihan = input("Pilih menu (1/2): ")
 
     if pilihan == "2":
-        print("\nTerima kasih, sampai berjumpa kembali👋")
+        print("\nSampai berjumpa kembali👋")
         sys.exit(0)
 
     elif pilihan == "1":
-        # Masuk langsung ke loop tanpa kembali ke menu lagi
+        # Setelah memilih masuk, langsung looping input-iterasi sampai user memilih tidak mengulang
         while True:
             try:
                 # ======================== INPUT DARI PENGGUNA ========================
@@ -37,6 +37,7 @@ while True:
 
                 x_simbol = symbols('x')
 
+                # fungsi parse untuk input string → SymPy expression
                 def parse(persamaan):
                     persamaan = persamaan.lower().replace(" ", "")
                     persamaan = persamaan.replace("akar(", "sqrt(")
@@ -45,11 +46,11 @@ while True:
 
                 fungsi = parse(fungsi_input)
 
-                def f(x):
-                    return fungsi.subs(x_simbol, x).evalf()
+                def f(x_val):
+                    return fungsi.subs(x_simbol, x_val).evalf()
 
-                def turunan(x):
-                    return diff(fungsi, x_simbol).subs(x_simbol, x).evalf()
+                def turunan(x_val):
+                    return diff(fungsi, x_simbol).subs(x_simbol, x_val).evalf()
 
             except Exception:
                 print("\n❌ Fungsi tidak valid! Contoh yang benar: x^2 - 4*x + 4")
@@ -63,21 +64,27 @@ while True:
             konvergen = False
             i = 1
 
+            # ======================== PROSES ITERASI NEWTON-RAPHSON ========================
             while i <= n:
                 fx = f(x)
                 dfx = turunan(x)
 
+                # Cek konvergensi berdasarkan f(x)
                 if abs(fx) < toleransi_error:
                     konvergen = True
                     break
 
+                # Jika turunan nol → tidak bisa dilanjutkan
                 if dfx == 0:
                     print("Turunan nol! Tidak bisa lanjut iterasi.")
-                    sys.exit(1)
+                    konvergen = False
+                    break
 
+                # Rumus Newton-Raphson : x_new = x - f(x)/f'(x)
                 x_new = x - fx / dfx
                 delta_x = abs(x_new - x)
 
+                # Cetak hasil iterasi (nilai f dan turunan dievaluasi kembali untuk tampilan)
                 print("| {:<8} | {:<12.6f} | {:<15.6f} | {:<15.6f} | {:<15.6f} |".format(
                     i, x_new, f(x_new), turunan(x_new), delta_x))
 
@@ -86,17 +93,21 @@ while True:
 
             print("=" * 90)
 
+            # ======================== HASIL AKHIR DENGAN FORMAT BARU ========================
             if konvergen:
-                print(f"\n✅ Konvergen! Akar yang ditemukan adalah {x} pada iterasi ke-{i-1}")
+                # fx sudah tersedia dari kondisi break
+                print(f"\n✅ Konvergen pada iterasi ke-{i-1}")
+                print(f"Akar terletak di x = {x:.6f} dengan f(x) = {fx:.6f}")
+
             else:
-                print(f"\n ⚠️ Metode berhenti pada iterasi ke-{n} karena mencapai batas iterasi maksimum.")
+                print(f"\n⚠️  Metode berhenti pada iterasi ke-{n} karena mencapai batas iterasi maksimum.")
                 print("❌ Solusi belum konvergen.")
 
             print("=" * 60)
             print("Program selesai dijalankan.")
             print("=" * 60)
 
-            # Opsi ulang -- TANPA kembali ke menu
+            # Opsi ulang -- langsung kembali ke input tanpa menampilkan menu
             ulang = input("\nApakah ingin mencoba lagi dengan fungsi lain? (y/n): ").lower()
             if ulang != "y":
                 print("\nTerima kasih telah menggunakan program ini👋")
